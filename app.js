@@ -11,6 +11,9 @@ const searchInput = document.getElementById('searchInput');
 const clearSessionBtn = document.getElementById('clearSessionBtn');
 const modal = document.getElementById('modal');
 const modalForm = document.getElementById('modalForm');
+const installBtn = document.getElementById('installBtn');
+
+let deferredInstallPrompt = null;
 
 const presetQuantities = [1, 5, 10, 25, 50];
 
@@ -198,3 +201,29 @@ clearSessionBtn.onclick = () => { if (confirm('Clear all counts?')) { state.coun
 searchInput.oninput = (e) => { state.search = e.target.value; renderGrid(); saveState(); };
 
 render();
+
+
+window.addEventListener('beforeinstallprompt', (event) => {
+  event.preventDefault();
+  deferredInstallPrompt = event;
+  installBtn.hidden = false;
+});
+
+installBtn.onclick = async () => {
+  if (!deferredInstallPrompt) return;
+  deferredInstallPrompt.prompt();
+  await deferredInstallPrompt.userChoice;
+  deferredInstallPrompt = null;
+  installBtn.hidden = true;
+};
+
+window.addEventListener('appinstalled', () => {
+  deferredInstallPrompt = null;
+  installBtn.hidden = true;
+});
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js');
+  });
+}

@@ -3,13 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#111827" />
     <title>Inventory Counter</title>
+    <link rel="manifest" href="manifest.webmanifest" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="app">
       <header class="tab-bar" id="tabBar">
         <div class="tabs-scroll" id="tabsScroll"></div>
+        <button class="btn btn-ghost" id="installBtn" hidden>Install App</button>
         <button class="btn btn-add" id="addTabBtn">+ Add Tab</button>
       </header>
 
