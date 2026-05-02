@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#111827" />
+    <title>Inventory Counter</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="tab-bar" id="tabBar">
+        <div class="tabs-scroll" id="tabsScroll"></div>
+        <button class="btn btn-ghost" id="installBtn" hidden>Install App</button>
+        <button class="btn btn-add" id="addTabBtn">+ Add Tab</button>
+      </header>
+
+      <main class="layout">
+        <aside class="count-panel">
+          <div class="panel-header">
+            <h2>Count Log</h2>
+            <button class="btn btn-ghost" id="clearSessionBtn">Clear Session</button>
+          </div>
+          <div id="countLog" class="count-log"></div>
+        </aside>
+
+        <section class="quantity-column">
+          <h3>Qty</h3>
+          <div id="qtyButtons" class="qty-buttons"></div>
+        </section>
+
+        <section class="grid-area">
+          <div class="grid-top">
+            <h2 id="activeTabTitle">No tabs yet</h2>
+            <input type="text" id="searchInput" placeholder="Search items..." />
+          </div>
+          <div id="itemGrid" class="item-grid"></div>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="modal">
+      <form method="dialog" id="modalForm" class="modal-form"></form>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
